@@ -1,0 +1,85 @@
+OrdererOrgs:
+- CA:
+    Country: TR
+    Locality: TURKEY
+    OrganizationalUnit: ""
+    PostalCode: ""
+    Province: Ankara
+    StreetAddress: ""
+  Domain: orderer.net
+  Name: Orderer
+  Specs:
+  - SANS:
+    - localhost
+  Template:
+    Count: 1
+    Hostname: orderer{{.Index}}
+PeerOrgs:
+- CA:
+    Country: TR
+    Hostname: ca
+    Locality: TURKEY
+    OrganizationalUnit: ""
+    PostalCode: ""
+    Province: Ankara
+    StreetAddress: ""
+  Domain: customer.net
+  EnableNodeOUs: true
+  Name: Customer
+  Template:
+    Count: 2
+    SANS:
+    - localhost
+  Users:
+    Count: 1
+- CA:
+    Country: TR
+    Hostname: ca
+    Locality: TURKEY
+    OrganizationalUnit: ""
+    PostalCode: ""
+    Province: Ankara
+    StreetAddress: ""
+  Domain: serviceProvider.net
+  EnableNodeOUs: true
+  Name: ServiceProvider
+  Template:
+    Count: 2
+    SANS:
+    - localhost
+  Users:
+    Count: 1
+- CA:
+    Country: TR
+    Hostname: ca
+    Locality: TURKEY
+    OrganizationalUnit: ""
+    PostalCode: ""
+    Province: Ankara
+    StreetAddress: ""
+  Domain: insuranceCompany.net
+  EnableNodeOUs: true
+  Name: InsuranceCompany
+  Template:
+    Count: 2
+    SANS:
+    - localhost
+  Users:
+    Count: 1
+- CA:
+    Country: TR
+    Hostname: ca
+    Locality: TURKEY
+    OrganizationalUnit: ""
+    PostalCode: ""
+    Province: Ankara
+    StreetAddress: ""
+  Domain: LegalAuthority.net
+  EnableNodeOUs: true
+  Name: LegalAuthority
+  Template:
+    Count: 3
+    SANS:
+    - localhost
+  Users:
+    Count: 1

@@ -1,0 +1,227 @@
+
+Organizations:
+    - &OrdererOrg
+            Name: LogOrdererMSP
+            ID: LogOrdererMSP
+            MSPDir: crypto-config/ordererOrganizations/orderer.net/msp
+            Policies:
+                Readers:
+                    Type: Signature
+                    Rule: "OR('LogOrdererMSP.member')"
+                Writers:
+                    Type: Signature
+                    Rule: "OR('LogOrdererMSP.member')"
+                Admins:
+                    Type: Signature
+                    Rule: "OR('LogOrdererMSP.admin')"
+
+
+    - &CustomerOrg
+            Name: CustomerMSP
+            ID: CustomerMSP
+            MSPDir: crypto-config/peerOrganizations/customer.net/msp
+            Policies:
+                Readers:
+                    Type: Signature
+                    Rule: "OR('CustomerMSP.admin', 'CustomerMSP.peer', 'CustomerMSP.client' )"
+                Writers:
+                    Type: Signature
+                    Rule: "OR('CustomerMSP.admin', 'CustomerMSP.client' )"
+                Admins:
+                    Type: Signature
+                    Rule: "OR('CustomerMSP.admin')"
+                Endorsement:
+                    Type: Signature
+                    Rule: "OR('CustomerMSP.peer')"
+            AnchorPeers:
+              - Host: peer0.customer.net
+                Port: 7051
+
+    - &ServiceProviderOrg
+            Name: ServiceProviderMSP
+            ID: ServiceProviderMSP
+            MSPDir: crypto-config/peerOrganizations/serviceProvider.net/msp
+            Policies:
+                Readers:
+                    Type: Signature
+                    Rule: "OR('ServiceProviderMSP.admin', 'ServiceProviderMSP.peer', 'ServiceProviderMSP.client' )"
+                Writers:
+                    Type: Signature
+                    Rule: "OR('ServiceProviderMSP.admin', 'ServiceProviderMSP.client' )"
+                Admins:
+                    Type: Signature
+                    Rule: "OR('ServiceProviderMSP.admin')"
+                Endorsement:
+                    Type: Signature
+                    Rule: "OR('ServiceProviderMSP.peer')"
+            AnchorPeers:
+              - Host: peer0.serviceProvider.net
+                Port: 7051
+
+    - &InsuranceCompanyOrg
+            Name: InsuranceCompanyMSP
+            ID: InsuranceCompanyMSP
+            MSPDir: crypto-config/peerOrganizations/insuranceCompany.net/msp
+            Policies:
+                Readers:
+                    Type: Signature
+                    Rule: "OR('InsuranceCompanyMSP.admin', 'InsuranceCompanyMSP.peer', 'InsuranceCompanyMSP.client' )"
+                Writers:
+                    Type: Signature
+                    Rule: "OR('InsuranceCompanyMSP.admin', 'InsuranceCompanyMSP.client' )"
+                Admins:
+                    Type: Signature
+                    Rule: "OR('InsuranceCompanyMSP.admin')"
+                Endorsement:
+                    Type: Signature
+                    Rule: "OR('InsuranceCompanyMSP.peer')"
+            AnchorPeers:
+              - Host: peer0.insuranceCompany.net
+                Port: 7051
+
+    - &LegalAuthorityOrg
+            Name: LegalAuthorityMSP
+            ID: LegalAuthorityMSP
+            MSPDir: crypto-config/peerOrganizations/LegalAuthority.net/msp
+            Policies:
+                Readers:
+                    Type: Signature
+                    Rule: "OR('LegalAuthorityMSP.admin', 'LegalAuthorityMSP.peer', 'LegalAuthorityMSP.client' )"
+                Writers:
+                    Type: Signature
+                    Rule: "OR('LegalAuthorityMSP.admin', 'LegalAuthorityMSP.client' )"
+                Admins:
+                    Type: Signature
+                    Rule: "OR('LegalAuthorityMSP.admin')"
+                Endorsement:
+                    Type: Signature
+                    Rule: "OR('LegalAuthorityMSP.peer')"
+            AnchorPeers:
+              - Host: peer0.LegalAuthority.net
+                Port: 7051
+
+
+Capabilities:
+    Channel: &ChannelCapabilities
+        V2_0: true
+    Orderer: &OrdererCapabilities
+        V2_0: true
+    Application: &ApplicationCapabilities
+        V2_0: true
+
+
+Application: &ApplicationDefaults
+    Organizations:
+
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+        LifecycleEndorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
+        Endorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
+    Capabilities:
+        <<: *ApplicationCapabilities
+
+
+Orderer: &OrdererDefaults
+    OrdererType: etcdraft
+    Addresses:
+          - orderer0.orderer.net:7050
+    BatchTimeout: 2s
+    BatchSize:
+        MaxMessageCount: 10
+        AbsoluteMaxBytes: 98 MB
+        PreferredMaxBytes: 1024 KB
+    EtcdRaft:
+        Consenters:
+
+            - Host: orderer0.orderer.net
+              Port: 7050
+              ClientTLSCert: crypto-config/ordererOrganizations/orderer.net/orderers/orderer0.orderer.net/tls/server.crt
+              ServerTLSCert: crypto-config/ordererOrganizations/orderer.net/orderers/orderer0.orderer.net/tls/server.crt
+
+    Organizations:
+
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+        BlockValidation:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+
+Channel: &ChannelDefaults
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+    Capabilities:
+        <<: *ChannelCapabilities
+
+Profiles:
+    OrdererGenesis:
+        <<: *ChannelDefaults
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *OrdererOrg
+            Capabilities:
+                <<: *OrdererCapabilities
+        Consortiums:
+            InfoLogConsortium:
+                Organizations:
+                   - *CustomerOrg
+                   - *ServiceProviderOrg
+            ImportantLogConsortium:
+                Organizations:
+                   - *CustomerOrg
+                   - *ServiceProviderOrg
+                   - *InsuranceCompanyOrg
+                   - *LegalAuthorityOrg
+
+
+    InfoLogs:
+        Consortium: InfoLogConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+              - *CustomerOrg
+              - *ServiceProviderOrg
+            Capabilities:
+              <<: *ApplicationCapabilities
+
+    ImportantLogs:
+        Consortium: ImportantLogConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+              - *CustomerOrg
+              - *ServiceProviderOrg
+              - *InsuranceCompanyOrg
+              - *LegalAuthorityOrg
+            Capabilities:
+              <<: *ApplicationCapabilities
