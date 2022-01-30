@@ -3,7 +3,7 @@ Organizations:
     - &OrdererOrg
             Name: LogOrdererMSP
             ID: LogOrdererMSP
-            MSPDir: crypto-config/ordererOrganizations/orderer.net/msp
+            MSPDir: crypto-config/ordererOrganizations/orderer/msp
             Policies:
                 Readers:
                     Type: Signature
@@ -19,7 +19,7 @@ Organizations:
     - &CustomerOrg
             Name: CustomerMSP
             ID: CustomerMSP
-            MSPDir: crypto-config/peerOrganizations/customer.net/msp
+            MSPDir: crypto-config/peerOrganizations/customer/msp
             Policies:
                 Readers:
                     Type: Signature
@@ -34,13 +34,13 @@ Organizations:
                     Type: Signature
                     Rule: "OR('CustomerMSP.peer')"
             AnchorPeers:
-              - Host: peer0.customer.net
+              - Host: peer0.customer
                 Port: 7051
 
     - &ServiceProviderOrg
             Name: ServiceProviderMSP
             ID: ServiceProviderMSP
-            MSPDir: crypto-config/peerOrganizations/serviceProvider.net/msp
+            MSPDir: crypto-config/peerOrganizations/serviceProvider/msp
             Policies:
                 Readers:
                     Type: Signature
@@ -55,13 +55,13 @@ Organizations:
                     Type: Signature
                     Rule: "OR('ServiceProviderMSP.peer')"
             AnchorPeers:
-              - Host: peer0.serviceProvider.net
+              - Host: peer0.serviceProvider
                 Port: 7051
 
     - &InsuranceCompanyOrg
             Name: InsuranceCompanyMSP
             ID: InsuranceCompanyMSP
-            MSPDir: crypto-config/peerOrganizations/insuranceCompany.net/msp
+            MSPDir: crypto-config/peerOrganizations/insuranceCompany/msp
             Policies:
                 Readers:
                     Type: Signature
@@ -76,13 +76,13 @@ Organizations:
                     Type: Signature
                     Rule: "OR('InsuranceCompanyMSP.peer')"
             AnchorPeers:
-              - Host: peer0.insuranceCompany.net
+              - Host: peer0.insuranceCompany
                 Port: 7051
 
     - &LegalAuthorityOrg
             Name: LegalAuthorityMSP
             ID: LegalAuthorityMSP
-            MSPDir: crypto-config/peerOrganizations/LegalAuthority.net/msp
+            MSPDir: crypto-config/peerOrganizations/legalAuthority/msp
             Policies:
                 Readers:
                     Type: Signature
@@ -97,7 +97,7 @@ Organizations:
                     Type: Signature
                     Rule: "OR('LegalAuthorityMSP.peer')"
             AnchorPeers:
-              - Host: peer0.LegalAuthority.net
+              - Host: peer0.legalAuthority
                 Port: 7051
 
 
@@ -136,7 +136,7 @@ Application: &ApplicationDefaults
 Orderer: &OrdererDefaults
     OrdererType: etcdraft
     Addresses:
-          - orderer0.orderer.net:7050
+          - orderer0.orderer:7050
     BatchTimeout: 2s
     BatchSize:
         MaxMessageCount: 10
@@ -144,11 +144,10 @@ Orderer: &OrdererDefaults
         PreferredMaxBytes: 1024 KB
     EtcdRaft:
         Consenters:
-
-            - Host: orderer0.orderer.net
+            - Host: orderer0.orderer
               Port: 7050
-              ClientTLSCert: crypto-config/ordererOrganizations/orderer.net/orderers/orderer0.orderer.net/tls/server.crt
-              ServerTLSCert: crypto-config/ordererOrganizations/orderer.net/orderers/orderer0.orderer.net/tls/server.crt
+              ClientTLSCert: crypto-config/ordererOrganizations/orderer/orderers/orderer0.orderer/tls/server.crt
+              ServerTLSCert: crypto-config/ordererOrganizations/orderer/orderers/orderer0.orderer/tls/server.crt
 
     Organizations:
 
@@ -190,31 +189,15 @@ Profiles:
             Capabilities:
                 <<: *OrdererCapabilities
         Consortiums:
-            InfoLogConsortium:
-                Organizations:
-                   - *CustomerOrg
-                   - *ServiceProviderOrg
-            ImportantLogConsortium:
+            LogStorageConsortium:
                 Organizations:
                    - *CustomerOrg
                    - *ServiceProviderOrg
                    - *InsuranceCompanyOrg
                    - *LegalAuthorityOrg
 
-
-    InfoLogs:
-        Consortium: InfoLogConsortium
-        <<: *ChannelDefaults
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-              - *CustomerOrg
-              - *ServiceProviderOrg
-            Capabilities:
-              <<: *ApplicationCapabilities
-
-    ImportantLogs:
-        Consortium: ImportantLogConsortium
+    LogStorage:
+        Consortium: LogStorageConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults

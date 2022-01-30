@@ -2,20 +2,20 @@ version: "2"
 networks:
   fabricnetwork: {}
 services:
-  ca.LegalAuthority.net:
-    container_name: ca.LegalAuthority.net
+  ca.legalAuthority:
+    container_name: ca.legalAuthority
     extends:
       file: base.yaml
       service: ca
     environment:
     - FABRIC_CA_SERVER_CA_NAME=LegalAuthorityCA
-    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.LegalAuthority.net-cert.pem
+    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.legalAuthority-cert.pem
     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/LEGALAUTHORITY_PRIVATE_KEY
-    - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.LegalAuthority.net-cert.pem
+    - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.legalAuthority-cert.pem
     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/LEGALAUTHORITY_PRIVATE_KEY
     working_dir: /opt/ws
     volumes:
-    - ../crypto-config/peerOrganizations/LegalAuthority.net/ca/:/etc/hyperledger/fabric-ca-server-config
+    - ../crypto-config/peerOrganizations/LegalAuthority/ca/:/etc/hyperledger/fabric-ca-server-config
     - ../:/opt/ws
     - ../ca-legalauthority/fabric-ca-server.db:/etc/hyperledger/fabric-ca-server/fabric-ca-server.db
     ports:
@@ -24,20 +24,20 @@ services:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  ca.customer.net:
-    container_name: ca.customer.net
+  ca.customer:
+    container_name: ca.customer
     extends:
       file: base.yaml
       service: ca
     environment:
     - FABRIC_CA_SERVER_CA_NAME=CustomerCA
-    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.customer.net-cert.pem
+    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.customer-cert.pem
     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/CUSTOMER_PRIVATE_KEY
-    - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.customer.net-cert.pem
+    - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.customer-cert.pem
     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/CUSTOMER_PRIVATE_KEY
     working_dir: /opt/ws
     volumes:
-    - ../crypto-config/peerOrganizations/customer.net/ca/:/etc/hyperledger/fabric-ca-server-config
+    - ../crypto-config/peerOrganizations/customer/ca/:/etc/hyperledger/fabric-ca-server-config
     - ../:/opt/ws
     - ../ca-customer/fabric-ca-server.db:/etc/hyperledger/fabric-ca-server/fabric-ca-server.db
     ports:
@@ -46,20 +46,20 @@ services:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  ca.insuranceCompany.net:
-    container_name: ca.insuranceCompany.net
+  ca.insuranceCompany:
+    container_name: ca.insuranceCompany
     extends:
       file: base.yaml
       service: ca
     environment:
     - FABRIC_CA_SERVER_CA_NAME=InsuranceCompanyCA
-    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.insuranceCompany.net-cert.pem
+    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.insuranceCompany-cert.pem
     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/INSURANCECOMPANY_PRIVATE_KEY
-    - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.insuranceCompany.net-cert.pem
+    - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.insuranceCompany-cert.pem
     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/INSURANCECOMPANY_PRIVATE_KEY
     working_dir: /opt/ws
     volumes:
-    - ../crypto-config/peerOrganizations/insuranceCompany.net/ca/:/etc/hyperledger/fabric-ca-server-config
+    - ../crypto-config/peerOrganizations/insuranceCompany/ca/:/etc/hyperledger/fabric-ca-server-config
     - ../:/opt/ws
     - ../ca-insurancecompany/fabric-ca-server.db:/etc/hyperledger/fabric-ca-server/fabric-ca-server.db
     ports:
@@ -68,20 +68,20 @@ services:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  ca.serviceProvider.net:
-    container_name: ca.serviceProvider.net
+  ca.serviceProvider:
+    container_name: ca.serviceProvider
     extends:
       file: base.yaml
       service: ca
     environment:
     - FABRIC_CA_SERVER_CA_NAME=ServiceProviderCA
-    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.serviceProvider.net-cert.pem
+    - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.serviceProvider-cert.pem
     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/SERVICEPROVIDER_PRIVATE_KEY
-    - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.serviceProvider.net-cert.pem
+    - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.serviceProvider-cert.pem
     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/SERVICEPROVIDER_PRIVATE_KEY
     working_dir: /opt/ws
     volumes:
-    - ../crypto-config/peerOrganizations/serviceProvider.net/ca/:/etc/hyperledger/fabric-ca-server-config
+    - ../crypto-config/peerOrganizations/serviceProvider/ca/:/etc/hyperledger/fabric-ca-server-config
     - ../:/opt/ws
     - ../ca-serviceprovider/fabric-ca-server.db:/etc/hyperledger/fabric-ca-server/fabric-ca-server.db
     ports:
@@ -102,20 +102,20 @@ services:
     - GODEBUG=netdns=go
     working_dir: /opt/ws
     volumes:
+    - ../../chaincode:/chaincode
     - /var/run/:/host/var/run/
     - ../:/opt/ws
-    - ../chaincode/github.com:/opt/gopath/src/github.com
     depends_on:
-    - orderer0.orderer.net
-    - peer0.customer.net
-    - peer1.customer.net
-    - peer0.serviceProvider.net
-    - peer1.serviceProvider.net
-    - peer0.insuranceCompany.net
-    - peer1.insuranceCompany.net
-    - peer0.LegalAuthority.net
-    - peer1.LegalAuthority.net
-    - peer2.LegalAuthority.net
+    - orderer0.orderer
+    - peer0.customer
+    - peer1.customer
+    - peer0.serviceProvider
+    - peer1.serviceProvider
+    - peer0.insuranceCompany
+    - peer1.insuranceCompany
+    - peer0.legalAuthority
+    - peer1.legalAuthority
+    - peer2.legalAuthority
     networks:
     - fabricnetwork
     extra_hosts:
@@ -283,16 +283,16 @@ services:
     - zookeeper2
     networks:
     - fabricnetwork
-  orderer0.orderer.net:
-    container_name: orderer0.orderer.net
+  orderer0.orderer:
+    container_name: orderer0.orderer
     extends:
       file: base.yaml
       service: orderer
     volumes:
     - ../blocks/orderer0orderernet:/var/hyperledger/production/orderer
     - ../genesis.block:/var/hyperledger/orderer/genesis.block
-    - ../crypto-config/ordererOrganizations/orderer.net/orderers/orderer0.orderer.net/msp:/var/hyperledger/orderer/msp
-    - ../crypto-config/ordererOrganizations/orderer.net/orderers/orderer0.orderer.net/tls/:/var/hyperledger/orderer/tls
+    - ../crypto-config/ordererOrganizations/orderer/orderers/orderer0.orderer/msp:/var/hyperledger/orderer/msp
+    - ../crypto-config/ordererOrganizations/orderer/orderers/orderer0.orderer/tls/:/var/hyperledger/orderer/tls
     ports:
     - 20235:7050
     depends_on:
@@ -304,17 +304,17 @@ services:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer0.LegalAuthority.net:
-    container_name: peer0.LegalAuthority.net
+  peer0.legalAuthority:
+    container_name: peer0.legalAuthority
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer0.LegalAuthority.net
-    - CORE_PEER_ADDRESS=peer0.LegalAuthority.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer0.LegalAuthority.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.LegalAuthority.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer0.LegalAuthority.net:7053
+    - CORE_PEER_ID=peer0.legalAuthority
+    - CORE_PEER_ADDRESS=peer0.legalAuthority:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer0.legalAuthority:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.legalAuthority:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer0.legalAuthority:7053
     - CORE_PEER_LOCALMSPID=LegalAuthorityMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch6:5984
@@ -322,33 +322,33 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.LegalAuthority.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.legalAuthority:7051
     volumes:
     - ../blocks/peer0LegalAuthoritynet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/LegalAuthority.net/peers/peer0.LegalAuthority.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/LegalAuthority.net/peers/peer0.LegalAuthority.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/LegalAuthority/peers/peer0.legalAuthority/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/LegalAuthority/peers/peer0.legalAuthority/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20013:7051
     - 20014:7053
     depends_on:
     - couch6
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer0.customer.net:
-    container_name: peer0.customer.net
+  peer0.customer:
+    container_name: peer0.customer
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer0.customer.net
-    - CORE_PEER_ADDRESS=peer0.customer.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer0.customer.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.customer.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer0.customer.net:7053
+    - CORE_PEER_ID=peer0.customer
+    - CORE_PEER_ADDRESS=peer0.customer:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer0.customer:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.customer:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer0.customer:7053
     - CORE_PEER_LOCALMSPID=CustomerMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch0:5984
@@ -356,33 +356,33 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.customer.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.customer:7051
     volumes:
     - ../blocks/peer0customernet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/customer.net/peers/peer0.customer.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/customer.net/peers/peer0.customer.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/customer/peers/peer0.customer/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/customer/peers/peer0.customer/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20001:7051
     - 20002:7053
     depends_on:
     - couch0
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer0.insuranceCompany.net:
-    container_name: peer0.insuranceCompany.net
+  peer0.insuranceCompany:
+    container_name: peer0.insuranceCompany
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer0.insuranceCompany.net
-    - CORE_PEER_ADDRESS=peer0.insuranceCompany.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer0.insuranceCompany.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.insuranceCompany.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer0.insuranceCompany.net:7053
+    - CORE_PEER_ID=peer0.insuranceCompany
+    - CORE_PEER_ADDRESS=peer0.insuranceCompany:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer0.insuranceCompany:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.insuranceCompany:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer0.insuranceCompany:7053
     - CORE_PEER_LOCALMSPID=InsuranceCompanyMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch4:5984
@@ -390,33 +390,33 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.insuranceCompany.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.insuranceCompany:7051
     volumes:
     - ../blocks/peer0insuranceCompanynet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/insuranceCompany.net/peers/peer0.insuranceCompany.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/insuranceCompany.net/peers/peer0.insuranceCompany.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/insuranceCompany/peers/peer0.insuranceCompany/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/insuranceCompany/peers/peer0.insuranceCompany/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20009:7051
     - 20010:7053
     depends_on:
     - couch4
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer0.serviceProvider.net:
-    container_name: peer0.serviceProvider.net
+  peer0.serviceProvider:
+    container_name: peer0.serviceProvider
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer0.serviceProvider.net
-    - CORE_PEER_ADDRESS=peer0.serviceProvider.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer0.serviceProvider.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.serviceProvider.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer0.serviceProvider.net:7053
+    - CORE_PEER_ID=peer0.serviceProvider
+    - CORE_PEER_ADDRESS=peer0.serviceProvider:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer0.serviceProvider:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.serviceProvider:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer0.serviceProvider:7053
     - CORE_PEER_LOCALMSPID=ServiceProviderMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch2:5984
@@ -424,33 +424,33 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.serviceProvider.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.serviceProvider:7051
     volumes:
     - ../blocks/peer0serviceProvidernet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/serviceProvider.net/peers/peer0.serviceProvider.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/serviceProvider.net/peers/peer0.serviceProvider.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/serviceProvider/peers/peer0.serviceProvider/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/serviceProvider/peers/peer0.serviceProvider/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20005:7051
     - 20006:7053
     depends_on:
     - couch2
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer1.LegalAuthority.net:
-    container_name: peer1.LegalAuthority.net
+  peer1.legalAuthority:
+    container_name: peer1.legalAuthority
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer1.LegalAuthority.net
-    - CORE_PEER_ADDRESS=peer1.LegalAuthority.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer1.LegalAuthority.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LegalAuthority.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer1.LegalAuthority.net:7053
+    - CORE_PEER_ID=peer1.legalAuthority
+    - CORE_PEER_ADDRESS=peer1.legalAuthority:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer1.legalAuthority:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.legalAuthority:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer1.legalAuthority:7053
     - CORE_PEER_LOCALMSPID=LegalAuthorityMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch7:5984
@@ -458,33 +458,33 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.LegalAuthority.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.legalAuthority:7051
     volumes:
     - ../blocks/peer1LegalAuthoritynet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/LegalAuthority.net/peers/peer1.LegalAuthority.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/LegalAuthority.net/peers/peer1.LegalAuthority.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/LegalAuthority/peers/peer1.legalAuthority/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/LegalAuthority/peers/peer1.legalAuthority/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20015:7051
     - 20016:7053
     depends_on:
     - couch7
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer1.customer.net:
-    container_name: peer1.customer.net
+  peer1.customer:
+    container_name: peer1.customer
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer1.customer.net
-    - CORE_PEER_ADDRESS=peer1.customer.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer1.customer.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.customer.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer1.customer.net:7053
+    - CORE_PEER_ID=peer1.customer
+    - CORE_PEER_ADDRESS=peer1.customer:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer1.customer:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.customer:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer1.customer:7053
     - CORE_PEER_LOCALMSPID=CustomerMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch1:5984
@@ -492,33 +492,33 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.customer.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.customer:7051
     volumes:
     - ../blocks/peer1customernet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/customer.net/peers/peer1.customer.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/customer.net/peers/peer1.customer.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/customer/peers/peer1.customer/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/customer/peers/peer1.customer/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20003:7051
     - 20004:7053
     depends_on:
     - couch1
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer1.insuranceCompany.net:
-    container_name: peer1.insuranceCompany.net
+  peer1.insuranceCompany:
+    container_name: peer1.insuranceCompany
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer1.insuranceCompany.net
-    - CORE_PEER_ADDRESS=peer1.insuranceCompany.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer1.insuranceCompany.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.insuranceCompany.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer1.insuranceCompany.net:7053
+    - CORE_PEER_ID=peer1.insuranceCompany
+    - CORE_PEER_ADDRESS=peer1.insuranceCompany:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer1.insuranceCompany:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.insuranceCompany:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer1.insuranceCompany:7053
     - CORE_PEER_LOCALMSPID=InsuranceCompanyMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch5:5984
@@ -526,33 +526,33 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.insuranceCompany.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.insuranceCompany:7051
     volumes:
     - ../blocks/peer1insuranceCompanynet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/insuranceCompany.net/peers/peer1.insuranceCompany.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/insuranceCompany.net/peers/peer1.insuranceCompany.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/insuranceCompany/peers/peer1.insuranceCompany/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/insuranceCompany/peers/peer1.insuranceCompany/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20011:7051
     - 20012:7053
     depends_on:
     - couch5
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer1.serviceProvider.net:
-    container_name: peer1.serviceProvider.net
+  peer1.serviceProvider:
+    container_name: peer1.serviceProvider
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer1.serviceProvider.net
-    - CORE_PEER_ADDRESS=peer1.serviceProvider.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer1.serviceProvider.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.serviceProvider.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer1.serviceProvider.net:7053
+    - CORE_PEER_ID=peer1.serviceProvider
+    - CORE_PEER_ADDRESS=peer1.serviceProvider:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer1.serviceProvider:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.serviceProvider:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer1.serviceProvider:7053
     - CORE_PEER_LOCALMSPID=ServiceProviderMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch3:5984
@@ -560,33 +560,33 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.serviceProvider.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.serviceProvider:7051
     volumes:
     - ../blocks/peer1serviceProvidernet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/serviceProvider.net/peers/peer1.serviceProvider.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/serviceProvider.net/peers/peer1.serviceProvider.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/serviceProvider/peers/peer1.serviceProvider/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/serviceProvider/peers/peer1.serviceProvider/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20007:7051
     - 20008:7053
     depends_on:
     - couch3
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:
     - myhost:127.0.0.1
-  peer2.LegalAuthority.net:
-    container_name: peer2.LegalAuthority.net
+  peer2.legalAuthority:
+    container_name: peer2.legalAuthority
     extends:
       file: base.yaml
       service: peer
     environment:
-    - CORE_PEER_ID=peer2.LegalAuthority.net
-    - CORE_PEER_ADDRESS=peer2.LegalAuthority.net:7051
-    - CORE_PEER_CHAINCODELISTENADDRESS=peer2.LegalAuthority.net:7052
-    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.LegalAuthority.net:7051
-    - CORE_PEER_EVENTS_ADDRESS=peer2.LegalAuthority.net:7053
+    - CORE_PEER_ID=peer2.legalAuthority
+    - CORE_PEER_ADDRESS=peer2.legalAuthority:7051
+    - CORE_PEER_CHAINCODELISTENADDRESS=peer2.legalAuthority:7052
+    - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.legalAuthority:7051
+    - CORE_PEER_EVENTS_ADDRESS=peer2.legalAuthority:7053
     - CORE_PEER_LOCALMSPID=LegalAuthorityMSP
     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couch8:5984
@@ -594,18 +594,18 @@ services:
     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     - CORE_CHAINCODE_MODE=net
     - CORE_PEER_NETWORKID=bc
-    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.LegalAuthority.net:7051
+    - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.legalAuthority:7051
     volumes:
     - ../blocks/peer2LegalAuthoritynet:/var/hyperledger/production
     - /var/run/:/host/var/run/
-    - ../crypto-config/peerOrganizations/LegalAuthority.net/peers/peer2.LegalAuthority.net/msp:/etc/hyperledger/fabric/msp
-    - ../crypto-config/peerOrganizations/LegalAuthority.net/peers/peer2.LegalAuthority.net/tls:/etc/hyperledger/fabric/tls
+    - ../crypto-config/peerOrganizations/LegalAuthority/peers/peer2.legalAuthority/msp:/etc/hyperledger/fabric/msp
+    - ../crypto-config/peerOrganizations/LegalAuthority/peers/peer2.legalAuthority/tls:/etc/hyperledger/fabric/tls
     ports:
     - 20017:7051
     - 20018:7053
     depends_on:
     - couch8
-    - orderer0.orderer.net
+    - orderer0.orderer
     networks:
     - fabricnetwork
     extra_hosts:

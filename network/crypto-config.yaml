@@ -6,7 +6,7 @@ OrdererOrgs:
     PostalCode: ""
     Province: Ankara
     StreetAddress: ""
-  Domain: orderer.net
+  Domain: orderer
   Name: Orderer
   Specs:
   - SANS:
@@ -23,7 +23,7 @@ PeerOrgs:
     PostalCode: ""
     Province: Ankara
     StreetAddress: ""
-  Domain: customer.net
+  Domain: customer
   EnableNodeOUs: true
   Name: Customer
   Template:
@@ -40,7 +40,7 @@ PeerOrgs:
     PostalCode: ""
     Province: Ankara
     StreetAddress: ""
-  Domain: serviceProvider.net
+  Domain: serviceProvider
   EnableNodeOUs: true
   Name: ServiceProvider
   Template:
@@ -57,7 +57,7 @@ PeerOrgs:
     PostalCode: ""
     Province: Ankara
     StreetAddress: ""
-  Domain: insuranceCompany.net
+  Domain: insuranceCompany
   EnableNodeOUs: true
   Name: InsuranceCompany
   Template:
@@ -74,9 +74,9 @@ PeerOrgs:
     PostalCode: ""
     Province: Ankara
     StreetAddress: ""
-  Domain: LegalAuthority.net
+  Domain: legalAuthority
   EnableNodeOUs: true
-  Name: LegalAuthority
+  Name: legalAuthority
   Template:
     Count: 3
     SANS:

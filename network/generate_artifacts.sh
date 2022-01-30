@@ -22,29 +22,20 @@ function generateArtifacts() {
 
 		$CONFIGTXGEN -profile OrdererGenesis -channelID system-channel -outputBlock ./genesis.block
 
-		$CONFIGTXGEN -profile InfoLogs -outputCreateChannelTx ./infologs.tx -channelID infologs
+
+		$CONFIGTXGEN -profile LogStorage -outputCreateChannelTx ./logStorage.tx -channelID logstorage
 
 		echo "Generating anchor peers tx files for  Customer"
-		$CONFIGTXGEN -profile InfoLogs -outputAnchorPeersUpdate  ./infologsCustomerMSPAnchor.tx -channelID infologs -asOrg CustomerMSP
+		$CONFIGTXGEN -profile LogStorage -outputAnchorPeersUpdate  ./logStorageCustomerMSPAnchor.tx -channelID logstorage -asOrg CustomerMSP
 
 		echo "Generating anchor peers tx files for  ServiceProvider"
-		$CONFIGTXGEN -profile InfoLogs -outputAnchorPeersUpdate  ./infologsServiceProviderMSPAnchor.tx -channelID infologs -asOrg ServiceProviderMSP
-
-
-
-		$CONFIGTXGEN -profile ImportantLogs -outputCreateChannelTx ./importantlogs.tx -channelID importantlogs
-
-		echo "Generating anchor peers tx files for  Customer"
-		$CONFIGTXGEN -profile ImportantLogs -outputAnchorPeersUpdate  ./importantlogsCustomerMSPAnchor.tx -channelID importantlogs -asOrg CustomerMSP
-
-		echo "Generating anchor peers tx files for  ServiceProvider"
-		$CONFIGTXGEN -profile ImportantLogs -outputAnchorPeersUpdate  ./importantlogsServiceProviderMSPAnchor.tx -channelID importantlogs -asOrg ServiceProviderMSP
+		$CONFIGTXGEN -profile LogStorage -outputAnchorPeersUpdate  ./logStorageServiceProviderMSPAnchor.tx -channelID logstorage -asOrg ServiceProviderMSP
 
 		echo "Generating anchor peers tx files for  InsuranceCompany"
-		$CONFIGTXGEN -profile ImportantLogs -outputAnchorPeersUpdate  ./importantlogsInsuranceCompanyMSPAnchor.tx -channelID importantlogs -asOrg InsuranceCompanyMSP
+		$CONFIGTXGEN -profile LogStorage -outputAnchorPeersUpdate  ./logStorageInsuranceCompanyMSPAnchor.tx -channelID logstorage -asOrg InsuranceCompanyMSP
 
 		echo "Generating anchor peers tx files for  LegalAuthority"
-		$CONFIGTXGEN -profile ImportantLogs -outputAnchorPeersUpdate  ./importantlogsLegalAuthorityMSPAnchor.tx -channelID importantlogs -asOrg LegalAuthorityMSP
+		$CONFIGTXGEN -profile LogStorage -outputAnchorPeersUpdate  ./logStorageLegalAuthorityMSPAnchor.tx -channelID logstorage -asOrg LegalAuthorityMSP
 
 
 
@@ -58,25 +49,25 @@ function generateDockerComposeFile(){
 	cp  docker/docker-compose-template.yaml  docker/docker-compose.yaml
 
 
-	cd  crypto-config/peerOrganizations/customer.net/ca
+	cd  crypto-config/peerOrganizations/customer/ca
 	PRIV_KEY=$(ls *_sk)
 	cd ../../../../
 	sed $OPTS "s/CUSTOMER_PRIVATE_KEY/${PRIV_KEY}/g"  docker/docker-compose.yaml
 
 
-	cd  crypto-config/peerOrganizations/serviceProvider.net/ca
+	cd  crypto-config/peerOrganizations/serviceProvider/ca
 	PRIV_KEY=$(ls *_sk)
 	cd ../../../../
 	sed $OPTS "s/SERVICEPROVIDER_PRIVATE_KEY/${PRIV_KEY}/g"  docker/docker-compose.yaml
 
 
-	cd  crypto-config/peerOrganizations/insuranceCompany.net/ca
+	cd  crypto-config/peerOrganizations/insuranceCompany/ca
 	PRIV_KEY=$(ls *_sk)
 	cd ../../../../
 	sed $OPTS "s/INSURANCECOMPANY_PRIVATE_KEY/${PRIV_KEY}/g"  docker/docker-compose.yaml
 
 
-	cd  crypto-config/peerOrganizations/LegalAuthority.net/ca
+	cd  crypto-config/peerOrganizations/LegalAuthority/ca
 	PRIV_KEY=$(ls *_sk)
 	cd ../../../../
 	sed $OPTS "s/LEGALAUTHORITY_PRIVATE_KEY/${PRIV_KEY}/g"  docker/docker-compose.yaml
